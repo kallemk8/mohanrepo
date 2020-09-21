@@ -1,3 +1,8 @@
 table {
   width: 100%;
 }
+
+.table_div{margin-top: 20px; margin-left: 10px; width: 98%; margin-right: 10px;}
+.main_div{padding: 10px;  border: 1px solid lightgray; border-radius: 10px; margin: 20px;}
+.btn_space{margin-right: 10px;}
+.btn_center{text-align: center}
