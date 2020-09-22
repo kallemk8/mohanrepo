@@ -1,6 +1,23 @@
 <div class="container">
     <div class="row main_div">
+      <div class="col-md-12">
+        <div class="form-group">
+        <input id="name" name="name" class="form-control" pattern="^[0-9]*$" required [(ngModel)]="hero.name" #name="ngModel" >
+
+        <div *ngIf="name.invalid && (name.dirty || name.touched)"
+            class="alert alert-danger">
+          <div *ngIf="name.errors.required">
+            Name is required.
+          </div>
+          <div *ngIf="name.errors.pattern">
+            Name cannot be String it should be intager.
+          </div>
+
+        </div>
+      </div>
+      </div>
       <div class="col-md-3">
+        
         <div class="form-group">
           <select class="form-control" id="sel1" [(ngModel)]="selectedValue">
             <option value="">Select value</option>
@@ -11,7 +28,25 @@
       </div>
       <div class="col-md-3" *ngIf="selectedValue==='objectid' || selectedValue===''">
         <div class="form-group">
-          <input type="text" class="form-control" [(ngModel)]="ObjectId" placeholder="objectid"/>
+          <input id="ObjectId" name="ObjectId" class="form-control"
+      required minlength="4" pattern=""
+      [(ngModel)]="ObjectId" #name="ngModel" >
+
+        <div *ngIf="ObjectId.invalid && (ObjectId.dirty || ObjectId.touched)"
+            class="alert alert-danger">
+
+          <div *ngIf="ObjectId.errors.required">
+            Name is required.
+          </div>
+          <div *ngIf="ObjectId.errors.minlength">
+            Name must be at least 4 characters long.
+          </div>
+          <div *ngIf="ObjectId.errors.forbiddenName">
+            Name cannot be Bob.
+          </div>
+
+        </div>
+          
         </div>
       </div>
       <div class="col-md-3" *ngIf="selectedValue==='status'">
