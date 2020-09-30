@@ -93,6 +93,9 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
       });
       
   }
+  selectname(selected){
+    this.mapdata = selected
+  }
   submitvalue(){
       
       if(this.selectedValue==="objectid"){
@@ -102,12 +105,11 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
           }
           return object;
         })
-        console.log(completedata);
         this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
         this.dataSource.paginator = this.paginator;
       }
       if(this.selectedValue==="status"){
-        this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+        this.dataSource = new MatTableDataSource(this.ELEMENT_DATA1);
         this.dataSource.paginator = this.paginator;
       }
     
