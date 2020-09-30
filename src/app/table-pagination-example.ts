@@ -18,6 +18,7 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
   ObjectId="";
   selectedValue="";
   heroForm;
+  mapdata =  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'};
   ELEMENT_DATA = [
     {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
     {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
@@ -40,7 +41,7 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
     {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
     {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
   ];
-  
+  demo = {position: 1, name: 'Hydrogen 1', weight: 1.0079, symbol: 'H'}
   
   ELEMENT_DATA1 = [
     {position: 1, name: 'Hydrogen 1', weight: 1.0079, symbol: 'H'},
