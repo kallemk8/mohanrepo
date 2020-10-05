@@ -2,7 +2,9 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-
+import { ExportToCsv } from 'export-to-csv';
+import { AppService } from './app.service';
+import { Moment} from 'moment';
 /**
  * @title Table with pagination
  */
@@ -12,6 +14,19 @@ import {MatTableDataSource} from '@angular/material/table';
   templateUrl: 'table-pagination-example.html',
 })
 export class TablePaginationExample implements AfterViewInit, OnInit {
+  options = { 
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalSeparator: '.',
+    showLabels: true, 
+    showTitle: false,
+    useTextFile: false,
+    useBom: true,
+    //useKeysAsHeaders: true,
+    headers: ['position', 'name', 'symbol'] 
+  };
+  constructor(private appService:AppService){}
+  csvExporter = new ExportToCsv(this.options);
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource();
   Status="";
@@ -72,32 +87,46 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  onclickfuntion(){
-    
+  onclickfuntion(data){
+    var newarray = [];
+    data.map((object,i)=>{
+      var newobject = {"position":Number,"name":"","symbol":""};
+      newobject.position = object.position;
+      newobject.name = object.name;
+      newobject.symbol = object.symbol;
+      newarray.push(newobject);
+    })
+    this.csvExporter.generateCsv(newarray);
+
+    this.appService.downloadFile(newarray, 'jsontocsv');
   }
-  hero = {
-    name:"",
-    alterEgo:"",
-    power:""
+  
+  hero2 = [ {
+    ObjectId:"",
+    status:"",
+    tstatus:""
+  },
+  {
+    ObjectId:"",
+    status:"",
+    tstatus:""
   }
+]
   ngOnInit(){
     
-      this.heroForm = new FormGroup({
-        name: new FormControl(this.hero.name, [
-          Validators.required,
-         
-          Validators.pattern("^[0-9]*$")
-        ]),
-        alterEgo: new FormControl(this.hero.alterEgo),
-        power: new FormControl(this.hero.power, Validators.required)
-      });
-      
+  }
+  addnewobjects(){
+    let object = { ObjectId:"", status:"", tstatus:""}
+    this.hero2.push(object);
+  }
+  removeoldobject(i){
+    this.hero2.splice(i);
   }
   selectname(selected){
     this.mapdata = selected
   }
   submitvalue(){
-      
+      console.log(this.hero2)
       if(this.selectedValue==="objectid"){
         var completedata = this.ELEMENT_DATA.map((object,i)=>{
           if(object.symbol === "S"){
@@ -116,9 +145,3 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
     }
     
 }
-
-
-
-/**  Copyright 2020 Google LLC. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license */

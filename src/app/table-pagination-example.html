@@ -1,36 +1,19 @@
 <div class="container">
-    <div class="row main_div">
-      <div class="col-md-12">
-        <div class="form-group">
-        <input id="name" name="name" class="form-control" pattern="^[0-9]*$" required [(ngModel)]="hero.name" #name="ngModel" >
-
-        <div *ngIf="name.invalid && (name.dirty || name.touched)"
-            class="alert alert-danger">
-          <div *ngIf="name.errors.required">
-            Name is required.
-          </div>
-          <div *ngIf="name.errors.pattern">
-            Name cannot be String it should be intager.
-          </div>
-
-        </div>
-      </div>
-      </div>
+    <div class="row main_div" *ngFor='let hero of hero2; let i = index'>
+      
       <div class="col-md-3">
         
         <div class="form-group">
-          <select class="form-control" id="sel1" [(ngModel)]="selectedValue">
+          <select class="form-control" id="sel1" [(ngModel)]="hero.ObjectId" name="{{i}}">
             <option value="">Select value</option>
             <option value="objectid" >ObjectId</option>
             <option value="status">Status</option>
           </select>
         </div>
       </div>
-      <div class="col-md-3" *ngIf="selectedValue==='objectid' || selectedValue===''">
+      <div class="col-md-3" *ngIf="hero.ObjectId==='objectid' || hero.ObjectId===''">
         <div class="form-group">
-          <input id="ObjectId" name="ObjectId" class="form-control"
-      required minlength="4" pattern=""
-      [(ngModel)]="ObjectId" #name="ngModel" >
+          <input id="ObjectId" class="form-control"  required pattern="" [(ngModel)]="hero.status" name="{{i}}" >
 
         <div *ngIf="ObjectId.invalid && (ObjectId.dirty || ObjectId.touched)"
             class="alert alert-danger">
@@ -49,9 +32,9 @@
           
         </div>
       </div>
-      <div class="col-md-3" *ngIf="selectedValue==='status'">
+      <div class="col-md-3" *ngIf="hero.ObjectId==='status'">
         <div class="form-group">
-          <select class="form-control" id="sel1" [(ngModel)]="Status" >
+          <select class="form-control" id="sel1" [(ngModel)]="hero.tstatus" name="{{i}}" >
             <option>AB</option>
             <option>DC</option>
             <option>KL</option>
@@ -59,9 +42,9 @@
         </div>
       </div>
       <div class="col-md-3">
-        <button class="btn btn-primary">Add</button>
+        <button class="btn btn-primary" (click)="addnewobjects()">Add</button>
         <span class="btn_space"></span>
-        <button class="btn btn-danger">Remove</button>
+        <button class="btn btn-danger"  (click)="removeoldobject(i)">Remove</button>
       </div>
     </div>
     <div class="row btn_center">
@@ -103,7 +86,7 @@
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
-
+<button class="btn btn-primary" (click)="onclickfuntion(ELEMENT_DATA1)">Export</button>
 <!-- pop up show all key and values at a time-->
 
 <!-- <table class="table">
