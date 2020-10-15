@@ -8,6 +8,8 @@ import {DemoMaterialModule} from './material-module';
 import {TablePaginationExample} from './table-pagination-example';
 import { SelectComponent } from './select.component'
 import { AppService } from './app.service';
+import { OrderModule } from 'ngx-order-pipe';
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 
 @NgModule({
   declarations: [
@@ -17,9 +19,11 @@ import { AppService } from './app.service';
   ],
   imports: [
     BrowserModule,
+    OrderModule,
     BrowserAnimationsModule,
     DemoMaterialModule,
-    FormsModule
+    FormsModule,
+    NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

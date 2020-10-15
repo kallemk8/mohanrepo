@@ -1,4 +1,5 @@
 <div class="container">
+  {{datevalue}}
     <div class="row main_div" *ngFor='let hero of hero2; let i = index'>
       
       <div class="col-md-3">
@@ -42,7 +43,9 @@
         </div>
       </div>
       <div class="col-md-3">
-        <button class="btn btn-primary" (click)="addnewobjects()">Add</button>
+        <div class="" >
+        <button class="btn btn-primary" [disabled]="hero.add === false" (click)="addnewobjects(i)">Add</button>
+      </div>
         <span class="btn_space"></span>
         <button class="btn btn-danger"  (click)="removeoldobject(i)">Remove</button>
       </div>
@@ -54,6 +57,12 @@
     </div>
   </div>
 <div class="mat-elevation-z8 table_div">
+  <mat-form-field>
+    <input matInput type="datetime-local" min="{{minDate}}" max="{{myDate}}"[(ngModel)]="startDate" (change)="startDatecom()" placeholder="start date">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="datetime-local" id="endDateid" min="{{minDate}}" max="{{myDate}}" [(ngModel)]="endDate" (change)="endDatecom()" placeholder="End date">
+  </mat-form-field>
   <table mat-table [dataSource]="dataSource">
 
     <!-- Position Column -->
@@ -86,7 +95,13 @@
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
-<button class="btn btn-primary" (click)="onclickfuntion(ELEMENT_DATA1)">Export</button>
+
+<div class="text-center" *ngIf="ELEMENT_DATA1.length === 0">
+<button class="btn btn-primary" disabled>Export</button>
+</div>
+<div class="text-center" *ngIf="ELEMENT_DATA1.length !== 0">
+  <button class="btn btn-primary" (click)="onclickfuntion(ELEMENT_DATA1)">Export</button>
+</div>
 <!-- pop up show all key and values at a time-->
 
 <!-- <table class="table">

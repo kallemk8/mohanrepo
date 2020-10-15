@@ -1,6 +1,6 @@
 <table class="table">
     <tbody>
-        <tr *ngFor="let item of model | keyvalue">
+        <tr *ngFor="let item of model | keyvalue: unsorted">
             <td>{{item.key}}</td>
             <td> {{item.value}}</td>
         </tr>
