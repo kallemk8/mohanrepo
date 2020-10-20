@@ -116,7 +116,7 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
     this.hero2[i].add = false
     let object = { ObjectId:"", status:"", tstatus:"", add:true}
     this.hero2.push(object);
-  }
+  } 
   removeoldobject(i){
     this.hero2.splice(i);
   }

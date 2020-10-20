@@ -57,12 +57,9 @@
     </div>
   </div>
 <div class="mat-elevation-z8 table_div">
-  <mat-form-field>
-    <input matInput type="datetime-local" min="{{minDate}}" max="{{myDate}}"[(ngModel)]="startDate" (change)="startDatecom()" placeholder="start date">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput type="datetime-local" id="endDateid" min="{{minDate}}" max="{{myDate}}" [(ngModel)]="endDate" (change)="endDatecom()" placeholder="End date">
-  </mat-form-field>
+  
+  
+  
   <table mat-table [dataSource]="dataSource">
 
     <!-- Position Column -->
