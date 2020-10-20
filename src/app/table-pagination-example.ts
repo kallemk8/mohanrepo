@@ -91,14 +91,16 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
   hero2 = [ {
     ObjectId:"",
     status:"",
-    tstatus:"",
-    add:true
-  },
-  {
-    ObjectId:"",
-    status:"",
-    tstatus:"",
-    add:true
+    requestnumber:true,
+    requestornumber:true,
+    transferDate:true,
+    processDate:true,
+    transferAmount:true,
+    applicationCode:true,
+    statusv:true,
+    obj:true,
+    add:true,
+    
   }
 ]
   ngOnInit(){
@@ -114,7 +116,39 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
   }
   addnewobjects(i){
     this.hero2[i].add = false
-    let object = { ObjectId:"", status:"", tstatus:"", add:true}
+    var temparray = [];
+    var object = 
+    { 
+      ObjectId:"", 
+      status:"", 
+      tstatus:"", 
+      add:true, 
+      obj:false,
+      requestnumber:true,
+      requestornumber:true,
+      transferDate:true,
+      processDate:true,
+      transferAmount:true,
+      applicationCode:true,
+      statusv:true,
+    }
+    this.hero2.map((op,i)=>{
+      if(op.ObjectId == "objectid"){
+        object.obj = false
+      }
+      if(op.ObjectId == "status"){
+        object.statusv = false
+      }
+      if(op.ObjectId == "requestnumber"){
+        object.requestnumber = false
+      }
+      if(op.ObjectId == "requestornumber"){
+        object.requestornumber = false
+      }
+      
+    })
+    console.log(object);
+    
     this.hero2.push(object);
   } 
   removeoldobject(i){

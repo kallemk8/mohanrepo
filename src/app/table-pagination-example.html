@@ -7,8 +7,15 @@
         <div class="form-group">
           <select class="form-control" id="sel1" [(ngModel)]="hero.ObjectId" name="{{i}}">
             <option value="">Select value</option>
-            <option value="objectid" >ObjectId</option>
-            <option value="status">Status</option>
+            <option value="objectid" *ngIf="hero.obj" >ObjectId</option>
+            <option value="status" *ngIf="hero.statusv">Status</option>
+            <option value="requestnumber" *ngIf="hero.requestnumber">requestnumber</option>
+            <option value="requestornumber" *ngIf="hero.requestornumber">requestornumber</option>
+            <option value="transferDate" *ngIf="hero.transferDate">transferDate</option>
+            <option value="processDate" *ngIf="hero.processDate">processDate</option>
+            <option value="transferAmount" *ngIf="hero.transferAmount">transferAmount</option>
+            <option value="applicationCode" *ngIf="hero.applicationCode">applicationCode</option>
+
           </select>
         </div>
       </div>
