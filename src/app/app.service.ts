@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 
-
 @Injectable()
 export class AppService {
-
+    constructor(){}
     downloadFile(data, filename='data') {
         let csvData = this.ConvertToCSV(data, ['position', 'name', 'weight', 'symbol']);
         
@@ -47,4 +46,5 @@ export class AppService {
          }
          return str;
      }
+     
 }

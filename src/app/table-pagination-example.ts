@@ -31,12 +31,16 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
     //useKeysAsHeaders: true,
     headers: ['position', 'name', 'symbol'] 
   };
+  selectedvalueds = ['onew','two', 'three']
+
+  selectedvalue2 = ['onew','two', 'three']
   constructor(private appService:AppService){}
   csvExporter = new ExportToCsv(this.options);
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource();
   Status="";
   ObjectId="";
+  tstatus="";
   selectedValue="";
   heroForm;
   mapdata =  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'};
@@ -113,6 +117,13 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
     let mindate = new Date()
     
     this.minDate = moment(mindate).format('YYYY-MM-DDTHH:MM');
+    this
+    var index = this.selectedvalueds.indexOf("onew");;
+    console.log(index);
+    var check = this.selectedvalue2.indexOf("onew");
+    console.log(check);
+    this.selectedvalue2.splice(index,1)
+    console.log(this.selectedvalue2)
   }
   addnewobjects(i){
     this.hero2[i].add = false

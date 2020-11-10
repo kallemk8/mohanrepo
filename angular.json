@@ -30,7 +30,7 @@
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.js" 
+              "./node_modules/bootstrap/dist/js/bootstrap.js"
             ]
           },
           "configurations": {
@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "mohan"
+  "defaultProject": "mohan",
+  "cli": {
+    "analytics": "3a3c4e61-d5a5-4782-93d4-433aa38330bb"
+  }
 }

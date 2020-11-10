@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="from">
+                <select class="form-control"  [(ngModel)]="search1"  (change)="onselected1(search1)" >
+                    <option value="">Select one</option>
+                    <option *ngFor="let option of selectOption1" value="{{option}}">{{option}}</option>
+                </select>
+                
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="from">
+                
+                <select class="form-control"  [(ngModel)]="search2" (change)="onselected2(search2)" >
+                    <option value="">Select two</option>
+                    <option *ngFor="let option of selectOption2" value="{{option}}">{{option}}</option>
+                </select>
+                
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="from">
+                
+                <select class="form-control"  [(ngModel)]="search3"  (change)="onselected3(search3)" >
+                    <option value="">Select three</option>
+                    <option *ngFor="let option of selectOption3" value="{{option}}">{{option}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
