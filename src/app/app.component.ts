@@ -9,7 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = {name: "srkanth"};
+  title = "mohan";
   Status="";
   ObjectId="";
   selectedValue="";

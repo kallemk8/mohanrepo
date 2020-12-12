@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import * as moment from 'moment';
 import 'moment-timezone';
 import { environment } from './../environments/environment';
+import { MatSort } from '@angular/material/sort';
 
 /**
  * @title Table with pagination
@@ -37,13 +38,14 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
   constructor(private appService:AppService){}
   csvExporter = new ExportToCsv(this.options);
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource();
+  
   Status="";
   ObjectId="";
   tstatus="";
   selectedValue="";
   heroForm;
   mapdata =  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'};
+  @ViewChild(MatSort) sort: MatSort;
   ELEMENT_DATA = [
     {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
     {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
@@ -71,11 +73,14 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
   ELEMENT_DATA1 = [
     
   ];
+  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
   }
   onclickfuntion(data){
     var newarray = [];
@@ -124,6 +129,8 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
     console.log(check);
     this.selectedvalue2.splice(index,1)
     console.log(this.selectedvalue2)
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
   addnewobjects(i){
     this.hero2[i].add = false
@@ -183,6 +190,7 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
     this.ELEMENT_DATA1 =   this.ELEMENT_DATA;
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA1);
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
       console.log(this.hero2)
       // if(this.hero2[0].ObjectId==="objectid"){
       //   var completedata = this.ELEMENT_DATA.map((object,i)=>{
@@ -200,5 +208,5 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
       // }
     
     }
-    
+       
 }

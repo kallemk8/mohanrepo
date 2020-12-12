@@ -1,5 +1,6 @@
 <div class="container">
     <div class="row">
+       
         <div class="col-md-2">
             <div class="from">
                 <select class="form-control"  [(ngModel)]="search1"  (change)="onselected1(search1)" >
@@ -9,24 +10,73 @@
                 
             </div>
         </div>
+        <div class="col-md-2"  *ngIf="search1 === 'one'">
+            <div class="from">
+               <input type="text" class="form-control"   [(ngModel)]="searchstr1" placeholder="Search" />
+            </div>
+        </div>
+        <div class="col-md-2"  *ngIf="search1 === 'two'">
+            <div class="from">
+                <input type="text" class="form-control"  [(ngModel)]="twosearch1" placeholder="Search" />
+             </div>
+        </div>
+        <div class="col-md-2"  *ngIf="search1 === 'three'">
+            <div class="from">
+                <input type="text" class="form-control"  [(ngModel)]="threesearch1" placeholder="Search" />
+             </div>
+        </div>
         <div class="col-md-2">
             <div class="from">
-                
-                <select class="form-control"  [(ngModel)]="search2" (change)="onselected2(search2)" >
-                    <option value="">Select two</option>
+                <select class="form-control"  [(ngModel)]="search2"  (change)="onselected2(search2)" >
+                    <option value="">Select one</option>
                     <option *ngFor="let option of selectOption2" value="{{option}}">{{option}}</option>
                 </select>
                 
             </div>
         </div>
+        <div class="col-md-2"  *ngIf="search2 === 'one'">
+            <div class="from">
+                <input type="text" class="form-control"  [(ngModel)]="searchstr2" placeholder="Search" />
+             </div>
+        </div>
+        <div class="col-md-2"  *ngIf="search2 === 'two'">
+            <div class="from">
+                <input type="text" class="form-control"  [(ngModel)]="twosearch2" placeholder="Search" />
+             </div>
+        </div>
+        <div class="col-md-2"  *ngIf="search2 === 'three'">
+            <div class="from">
+                <input type="text" class="form-control"  [(ngModel)]="threesearch2" placeholder="Search" />
+             </div>
+        </div>
         <div class="col-md-2">
             <div class="from">
-                
                 <select class="form-control"  [(ngModel)]="search3"  (change)="onselected3(search3)" >
-                    <option value="">Select three</option>
+                    <option value="">Select one</option>
                     <option *ngFor="let option of selectOption3" value="{{option}}">{{option}}</option>
                 </select>
+                
             </div>
         </div>
+        <div class="col-md-2" *ngIf="search3 === 'one'">
+            <div class="from">
+                <input type="text" class="form-control"  [(ngModel)]="searchstr3" placeholder="Search" />
+             </div>
+        </div>
+        <div class="col-md-2"  *ngIf="search3 === 'two'">
+            <div class="from">
+                <input type="text" class="form-control"  [(ngModel)]="twosearch3" placeholder="Search" />
+             </div>
+        </div>
+        <div class="col-md-2"  *ngIf="search3 === 'three'">
+            <div class="from">
+                <input type="text" (keyup)="onchangevalues()" class="form-control"  [(ngModel)]="threesearch3" placeholder="Search" />
+             </div>
+        </div>
+        <div class="col-md-12">
+            <button (click)="submitvalues()">Button</button>
+
+        </div>
+    
     </div>
 </div>

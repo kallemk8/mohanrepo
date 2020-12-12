@@ -6,14 +6,57 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './fromgroup.component.html',
 })
 export class Fromgroup implements OnInit {
+    form:any
     @Input() model: any; 
     search1="";
     search2="";
     search3="";
+    searchstr1="";
+    searchstr2="";
+    searchstr3="";
+    twosearch1 ="";
+    twosearch2 ="";
+    twosearch3 ="";
+    
+    threesearch1="";
+    threesearch2="";
+    threesearch3="";
+
     selectOption1 = ["one", "two", "three", "four", "five",'six']
     selectOption2 = ["one", "two", "three", "four", "five",'six']
     selectOption3 = ["one", "two", "three", "four", "five",'six']
     ngOnInit(){
+        
+    }
+    onchangevalues(){
+        if(!this.threesearch3){
+            console.log('enterdfgdfgfdg');
+        }
+        
+    }
+    
+    submitvalues(){
+        if((this.search1)){
+            if((this.searchstr1 || this.twosearch1 || this.threesearch1)){
+                console.log('enter 1');
+            }else{
+                console.log('enter wrong 1');
+            }
+        }
+        if((this.search2)){
+            if((this.searchstr2 || this.twosearch2 || this.threesearch2)){
+                console.log('enter 2');
+            }else{
+                console.log('enter wrong 2');
+            }
+        }
+        if((this.search3)){
+            if((this.searchstr3 || this.twosearch3 || this.threesearch3)){
+                console.log('enter 3');
+            }else{
+                console.log('enter wrong 3');
+            }
+        }
         
     }
     onselected1(value1) {
