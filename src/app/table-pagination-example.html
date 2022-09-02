@@ -1,4 +1,7 @@
 <div class="container">
+  <input type="checkbox" name="RADIO1" checked="true" [(ngModel)]="radiobutton1" (change)="radiobuttonchange1()" value="radiobutton1"   /> Radio 1
+  <input type="checkbox" name="RADIO1"  [(ngModel)]="radiobutton2"(change)="radiobuttonchange2()" value="radiobutton2" /> Radio 2
+  
   {{datevalue}}
     <div class="row main_div" *ngFor='let hero of hero2; let i = index'>
       
@@ -63,6 +66,9 @@
       </div>
     </div>
   </div>
+  <textarea width="100%" rows="40">
+  {{formattedXml}}
+  </textarea>
 <div class="mat-elevation-z8 table_div">
   
   

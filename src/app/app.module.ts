@@ -12,6 +12,8 @@ import {AuthGuard} from './auth-guard.service';
 import { Routes, RouterState, Router, RouterModule } from '@angular/router';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 import { Fromgroup } from './fromgroup.component';
+import { ChartsModule } from 'ng2-charts';
+
 const appRoot: Routes = [
   {path: "table", component: TablePaginationExample},
   {path: "from", component: Fromgroup},
@@ -30,6 +32,7 @@ const appRoot: Routes = [
     BrowserAnimationsModule,
     DemoMaterialModule,
     FormsModule,
+    ChartsModule,
     NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule,
     RouterModule.forRoot(appRoot, { useHash: true })
   ],

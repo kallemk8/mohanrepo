@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
+import { Label } from 'ng2-charts';
 
 @Component({
   selector: 'from-group',
@@ -25,6 +27,18 @@ export class Fromgroup implements OnInit {
     selectOption1 = ["one", "two", "three", "four", "five",'six']
     selectOption2 = ["one", "two", "three", "four", "five",'six']
     selectOption3 = ["one", "two", "three", "four", "five",'six']
+    barChartOptions: ChartOptions = {
+        responsive: true,
+      };
+      barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+      barChartType: ChartType = 'bar';
+      barChartLegend = true;
+      barChartPlugins = [];
+    
+      barChartData: ChartDataSets[] = [
+        { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+        
+      ];
     ngOnInit(){
         
     }
@@ -33,9 +47,13 @@ export class Fromgroup implements OnInit {
             console.log('enterdfgdfgfdg');
         }
         
+        
     }
     
     submitvalues(){
+        this.barChartData[0].data = [];
+        this.barChartData[0].label = ''
+        this.barChartLabels = [];
         if((this.search1)){
             if((this.searchstr1 || this.twosearch1 || this.threesearch1)){
                 console.log('enter 1');

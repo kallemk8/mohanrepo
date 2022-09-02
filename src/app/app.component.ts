@@ -79,6 +79,7 @@ export class AppComponent implements OnInit {
       alterEgo: new FormControl(this.hero.alterEgo),
       power: new FormControl(this.hero.power, Validators.required)
     });
+    
   }
   submitvalue(){
       

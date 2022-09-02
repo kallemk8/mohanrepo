@@ -8,7 +8,12 @@ import * as moment from 'moment';
 import 'moment-timezone';
 import { environment } from './../environments/environment';
 import { MatSort } from '@angular/material/sort';
+import { Packer } from 'docx';
+import { saveAs } from 'file-saver';
+import { experiences, education, skills, achievements } from "./cv-data";
+var format = require('xml-formatter');
 
+import { DocumentCreator } from './cv-generator';
 /**
  * @title Table with pagination
  */
@@ -19,6 +24,25 @@ import { MatSort } from '@angular/material/sort';
 })
 export class TablePaginationExample implements AfterViewInit, OnInit {
   datevalue = moment('2020-10-20').format('YYYY.MM.DD')
+  public download(): void {
+    const documentCreator = new DocumentCreator();
+    const doc = documentCreator.create([
+      experiences,
+      education,
+      skills,
+      achievements
+    ]);
+    
+    Packer.toBlob(doc).then(blob => {
+      console.log(blob);
+      saveAs(blob, "example.docx");
+      console.log("Document created successfully");
+    });
+  }
+  xml = '<root><content><p xml:space="preserve">This is <b>some</b> content.</content></p>';
+
+  formattedXml;
+  
   myDate;
   minDate;
   options = { 
@@ -43,16 +67,31 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
   ObjectId="";
   tstatus="";
   selectedValue="";
+  radiobutton1 = "radiobutton1";
+  radiobutton2 = "";
+  radiobuttonchange2(){
+    console.log('sdds')
+    this.radiobutton2 = "radiobutton2"
+    this.radiobutton1 = "";
+    console.log(this.radiobutton1, this.radiobutton2)
+  }
+  radiobuttonchange1(){
+    console.log('sdds')
+    this.radiobutton1 = "radiobutton1"
+    this.radiobutton2 = "";
+    console.log(this.radiobutton1, this.radiobutton2)
+  }
   heroForm;
   mapdata =  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'};
   @ViewChild(MatSort) sort: MatSort;
-  ELEMENT_DATA = [
-    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-    {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-    {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-    {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
+  
+  ELEMENT_DATA= [
+    {position: 1, name: '///Hydrogen', weight: 1.0079, symbol: 'H'},
+    {position: 2, name: '//Helium', weight: 4.0026, symbol: 'He'},
+    {position: 3, name: '//Lithium', weight: 6.941, symbol: 'Li'},
+    {position: 4, name: '\\Beryllium', weight: 9.0122, symbol: 'Be'},
+    {position: 5, name: '\\Boron', weight: 10.811, symbol: 'B'},
+    {position: 6, name: 'Carbon\\', weight: 12.0107, symbol: 'C'},
     {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
     {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
     {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
@@ -78,8 +117,8 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+     this.dataSource.paginator = this.paginator;
+     this.dataSource.sort = this.sort;
 
   }
   onclickfuntion(data){
@@ -93,7 +132,7 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
     })
     this.csvExporter.generateCsv(newarray);
 
-   // this.appService.downloadFile(newarray, 'jsontocsv');
+   this.appService.downloadFile(newarray, 'jsontocsv');
   }
   startDate:"";
   endDate:"";
@@ -131,6 +170,9 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
     console.log(this.selectedvalue2)
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+   
+    this.formattedXml =  format(this.xml);
+    console.log(this.formattedXml)
   }
   addnewobjects(i){
     this.hero2[i].add = false
@@ -188,10 +230,21 @@ export class TablePaginationExample implements AfterViewInit, OnInit {
   }
   submitvalue(){
     this.ELEMENT_DATA1 =   this.ELEMENT_DATA;
-    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA1);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-      console.log(this.hero2)
+    console.log(this.radiobutton1)
+    console.log(this.radiobutton2)
+    //console.log(this.ELEMENT_DATA1)
+   var data =  JSON.stringify(this.ELEMENT_DATA);
+   //console.log(data);
+  var sample= data.replace(/\//g, "");;
+  var sample2= sample.replace(/\\/g, "");;
+  
+   var comp = JSON.parse(sample2)
+   //console.log(comp);
+    // this.dataSource = new MatTableDataSource(comp);
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
+     // console.log(this.hero2)
+
       // if(this.hero2[0].ObjectId==="objectid"){
       //   var completedata = this.ELEMENT_DATA.map((object,i)=>{
       //     if(object.symbol === "S"){
